@@ -1,3 +1,5 @@
+
+
 public class Throttle{
     private int top;
     private int position;
@@ -31,28 +33,16 @@ public class Throttle{
     }
 
     public static void main(String[] args) {
-        // Create a throttle with a maximum position of 5
-        Throttle throttle = new Throttle(5);
+        Throttle control = new Throttle(100);
+        control.shift(3);
+        
+        final int SIZE = 8;
+        final int SPOT = 3;
 
-        // Check if it's on initially (should be off)
-        System.out.println("Throttle is on: " + throttle.isOn());  // false
-
-        // Increase throttle by 3
-        throttle.shift(3);
-        System.out.println("Flow rate: " + throttle.getFlow());    // 0.6
-        System.out.println("Throttle is on: " + throttle.isOn());  // true
-
-        // Increase throttle by more than allowed
-        throttle.shift(5);  // Should cap at top
-        System.out.println("Flow rate after overshift: " + throttle.getFlow());  // 1.0
-
-        // Turn it off
-        throttle.shutOff();
-        System.out.println("Throttle is on after shutOff: " + throttle.isOn());  // false
-        System.out.println("Flow rate after shutOff: " + throttle.getFlow());    // 0.0
-
-        // Try shifting negatively
-        throttle.shift(-2); // Should stay at 0
-        System.out.println("Flow rate after negative shift: " + throttle.getFlow()); // 0.0
+        Throttle small = new Throttle(SIZE);
+        small.shift(SPOT);
+        System.out.println("My small throttle is now at position ");
+        System.out.println(SPOT + " out of "+ SIZE+".");
+        System.out.println("The flow is now: "+small.getFlow());
     }
 }
